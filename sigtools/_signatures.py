@@ -64,7 +64,7 @@ class UpgradedAnnotation(metaclass=abc.ABCMeta):
         has_feature = _is_co_flag_enabled(function)
 
         if has_feature is None:
-            return EmptyAnnotation
+            return _PreEvaluatedAnnotation(raw_annotation)
         elif has_feature:
             return _PostponedAnnotation(raw_annotation, function)
         else:
